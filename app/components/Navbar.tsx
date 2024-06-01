@@ -1,51 +1,11 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from './icons/HamburgerIcon';
 import { useState } from 'react';
+import { links } from '~/constants/Links';
 
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isKg, setIsKg] = useState(false);
-
-  const sections = [
-    {
-      name: 'Calculators',
-      links: [
-        {
-          name: 'One Rep Max',
-          url: '/',
-        },
-        {
-          name: 'Powerlifting Level',
-          url: '/',
-        },
-        {
-          name: 'Barbell',
-          url: '/',
-        },
-        {
-          name: 'Macro',
-          url: '/',
-        },
-        {
-          name: 'RPE',
-          url: '/',
-        },
-      ],
-    },
-    {
-      name: 'Docs',
-      links: [
-        {
-          name: 'Powerlifting Standards',
-          url: '/',
-        },
-        {
-          name: 'Prelipins Table',
-          url: '/',
-        },
-      ],
-    },
-  ];
 
   const handleThemeToggleClick = () => {
     setIsDarkMode(!isDarkMode);
@@ -109,7 +69,7 @@ function Navbar() {
                 Home
               </Link>
               {/* Sections */}
-              {sections.map((section) => (
+              {links.map((section) => (
                 <div
                   key={section.name}
                   className=""
