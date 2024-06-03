@@ -5,3 +5,8 @@ export type oneRepMaxTableDataEntry = {
 };
 
 export type WeightType = 'lbs' | 'kgs';
+
+export type WeightFormData = {
+  weight: number;
+  weightType: WeightType;
+};

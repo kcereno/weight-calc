@@ -1,18 +1,28 @@
+import { capitalizeFirstLetter } from '~/utils/transformers';
+
 type TextInputProps = {
-  label: string;
+  name: string;
+  value: string | number | undefined;
   type?: string;
-  placeholder?: string;
+  onChange: (name: string, value: string) => void;
 };
 
-function TextInput({ label, type = 'text', placeholder }: TextInputProps) {
+function TextInput({ name, type = 'text', value, onChange }: TextInputProps) {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+
+    onChange(name, input);
+  };
+
   return (
     <div className="my-2 flex-1">
       <label className="form-control w-full">
-        <span className="mb-1">{label}</span>
+        <span className="mb-1">{capitalizeFirstLetter(name)}</span>
         <input
           type={type}
-          placeholder={placeholder}
           className="input input-bordered w-full"
+          value={value}
+          onChange={handleInputChange}
         />
       </label>
     </div>

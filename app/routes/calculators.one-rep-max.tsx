@@ -1,16 +1,43 @@
 import { useState } from 'react';
 import OneRepMaxTable from '~/components/ Tables/OneRepMaxTable';
-
 import TextInput from '~/components/icons/ui/TextInput';
 import WeightInput from '~/components/icons/ui/WeightInput';
+import { WeightType } from '~/types/Data';
 import { calculateOneRepMax, generateLiftData } from '~/utils/calculators';
 
 function OneRepMaxCalculatorPage() {
-  const [weight, setWeight] = useState(0);
+  const [formData, setFormData] = useState<{
+    weight: string;
+    repetitions: string;
+    weightType: WeightType;
+  }>({
+    weight: '',
+    repetitions: '',
+    weightType: 'lbs',
+  });
 
-  const oneRepMax = calculateOneRepMax(225, 1);
-  const repTable = generateLiftData(oneRepMax, 'kgs');
-  console.log('OneRepMaxCalculatorPage ~ repTable:', repTable);
+  const [oneRepMax, setOneRepMax] = useState<number>(0);
+
+  const handleInputChange = (name: string, value: number | string) => {
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    const updated1RM = calculateOneRepMax(
+      parseFloat(formData.weight),
+      parseFloat(formData.repetitions)
+    );
+
+    setOneRepMax(updated1RM);
+  };
+
+  const liftData = generateLiftData(oneRepMax, formData.weightType);
+
+  const isDisabled =
+    formData.weight === '' ||
+    formData.repetitions === '' ||
+    parseFloat(formData.weight) <= 0 ||
+    parseFloat(formData.repetitions) <= 0;
 
   return (
     <div className="p-6">
@@ -18,15 +45,30 @@ function OneRepMaxCalculatorPage() {
       <p className="text-sm">
         Calculate the maximum weight you can lift for one repetition.
       </p>
-      <form className="my-6">
-        <WeightInput />
-        <TextInput label="Repetitions" />
-        <button className="btn btn-block btn-primary mt-4">
+      <div className="my-6">
+        <WeightInput
+          onChange={handleInputChange}
+          value={{
+            weight: formData.weight,
+            type: formData.weightType,
+          }}
+        />
+        <TextInput
+          name={'repetitions'}
+          value={formData.repetitions}
+          onChange={handleInputChange}
+          type="number"
+        />
+        <button
+          className="btn btn-block btn-primary mt-4"
+          onClick={handleSubmit}
+          disabled={isDisabled}
+        >
           Calculate One Rep Max
         </button>
-      </form>
+      </div>
 
-      {oneRepMax ? <OneRepMaxTable /> : null}
+      {oneRepMax > 0 ? <OneRepMaxTable data={liftData} /> : null}
     </div>
   );
 }

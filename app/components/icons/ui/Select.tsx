@@ -1,32 +1,29 @@
-import React, { useState } from 'react';
-import { WeightType } from '~/types/Data';
+type SelectProps = {
+  name: string;
+  options: string[];
+  onChange: (name: string, value: string) => void;
+};
 
-function Select() {
-  const [selectedValue, setSelectedValue] = useState<WeightType>('lbs');
+function Select({ name, options, onChange }: SelectProps) {
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
 
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value as WeightType;
-
-    setSelectedValue(selectedValue);
+    onChange(name, selectedValue);
   };
   return (
     <div className="my-2">
       <select
         className="select select-bordered"
-        onChange={handleSelect}
+        onChange={handleInputChange}
       >
-        <option
-          selected={selectedValue === 'lbs'}
-          value={'lbs'}
-        >
-          lbs
-        </option>
-        <option
-          selected={selectedValue === 'kgs'}
-          value={'kgs'}
-        >
-          kgs
-        </option>
+        {options.map((option) => (
+          <option
+            key={option}
+            value={option}
+          >
+            {option}
+          </option>
+        ))}
       </select>
     </div>
   );
