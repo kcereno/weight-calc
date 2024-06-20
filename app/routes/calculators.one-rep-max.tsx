@@ -2,18 +2,19 @@ import { useState } from 'react';
 import OneRepMaxTable from '~/components/ Tables/OneRepMaxTable';
 import TextInput from '~/components/icons/ui/TextInput';
 import WeightInput from '~/components/icons/ui/WeightInput';
-import { WeightType } from '~/types/Data';
+import { WeightUnit } from '~/types/weight';
+
 import { calculateOneRepMax, generateLiftData } from '~/utils/calculators';
 
-function OneRepMaxCalculatorPage() {
+function OneRepMaxCalculator() {
   const [formData, setFormData] = useState<{
     weight: string;
     repetitions: string;
-    weightType: WeightType;
+    weightType: WeightUnit;
   }>({
     weight: '',
     repetitions: '',
-    weightType: 'lbs',
+    weightType: 'lb',
   });
 
   const [oneRepMax, setOneRepMax] = useState<number>(0);
@@ -73,4 +74,4 @@ function OneRepMaxCalculatorPage() {
   );
 }
 
-export default OneRepMaxCalculatorPage;
+export default OneRepMaxCalculator;

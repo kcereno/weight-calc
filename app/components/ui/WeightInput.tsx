@@ -1,15 +1,14 @@
 import TextInput from './TextInput';
 import Select from './Select';
-import { WeightType } from '~/types/data';
+import { WeightUnit } from '~/types/weight';
+import { weightUnits } from '~/constants/weights';
 
 type WeightInputProps = {
-  value: { weight: string; type: WeightType };
+  value: { weight: string; type: WeightUnit };
   onChange: (name: string, value: string) => void;
 };
 
 function WeightInput({ onChange, value }: WeightInputProps) {
-  const weightTypes: WeightType[] = ['lbs', 'kgs'];
-
   return (
     <div className="flex items-end">
       <TextInput
@@ -20,7 +19,7 @@ function WeightInput({ onChange, value }: WeightInputProps) {
       />
       <Select
         name={'weightType'}
-        options={weightTypes}
+        options={weightUnits}
         onChange={onChange}
       />
     </div>

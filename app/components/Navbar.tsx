@@ -1,7 +1,7 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from './icons/HamburgerIcon';
 import { useState } from 'react';
-import { links } from '~/constants/Links';
+import { links } from '~/constants/links';
 
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true);

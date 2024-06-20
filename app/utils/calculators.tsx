@@ -1,6 +1,5 @@
-import { oneRepMaxTableDataEntry } from '~/types/Data';
-
-type WeightType = 'lbs' | 'kgs';
+import { oneRepMaxTableDataEntry } from '~/types/data';
+import { Plate, BarWeight, BarbellLoad, WeightUnit } from '~/types/weight';
 
 export function calculateOneRepMax(weight: number, reps: number): number {
   if (reps === 1) {
@@ -15,7 +14,7 @@ function calculateLiftWeight(oneRepMax: number, percentage: number): number {
 
 export function generateLiftData(
   oneRepMax: number,
-  weightType: WeightType
+  weightType: WeightUnit
 ): oneRepMaxTableDataEntry[] {
   const percentageToRepsRangeTable: { [key: number]: string } = {
     100: '1',
@@ -43,3 +42,38 @@ export function generateLiftData(
   }
   return data.reverse();
 }
+
+export const calculateBarbellLoad = (
+  targetWeight: number,
+  barWeight: BarWeight,
+  availablePlates: Plate[]
+): BarbellLoad | null => {
+  let temp = (targetWeight - barWeight) / 2;
+
+  if (temp < barWeight) {
+    return null;
+  }
+
+  const load = availablePlates.map((plate) => {
+    const perSide = Math.floor(temp / plate);
+
+    temp -= perSide * plate;
+
+    return {
+      plate,
+      perSide,
+    };
+  });
+
+  return load;
+};
+export const calculateTotalPlateWeight = (barbellLoad: BarbellLoad) => {
+  let total = 0;
+  barbellLoad.forEach((entry) => {
+    const totalWeight = entry.plate * (entry.perSide * 2);
+
+    total += totalWeight;
+  });
+
+  return total;
+};

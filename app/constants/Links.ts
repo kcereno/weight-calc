@@ -6,13 +6,13 @@ export const links = [
         name: 'One Rep Max',
         url: '/calculators/one-rep-max',
       },
+      // {
+      //   name: 'Powerlifting Level',
+      //   url: '/',
+      // },
       {
-        name: 'Powerlifting Level',
-        url: '/',
-      },
-      {
-        name: 'Barbell',
-        url: '/',
+        name: 'Barbell Load ',
+        url: '/calculators/barbell-load',
       },
       {
         name: 'Macro',
