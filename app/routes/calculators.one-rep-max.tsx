@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import OneRepMaxTable from '~/components/ Tables/OneRepMaxTable';
+
 import TextInput from '~/components/icons/ui/TextInput';
 import WeightInput from '~/components/icons/ui/WeightInput';
+import OneRepMaxTable from '~/components/tables/OneRepMaxTable';
 import { WeightUnit } from '~/types/weight';
 
 import { calculateOneRepMax, generateLiftData } from '~/utils/calculators';

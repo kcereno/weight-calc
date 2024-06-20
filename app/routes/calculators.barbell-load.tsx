@@ -1,12 +1,16 @@
 import { useState } from 'react';
-import BarbellLoadTable from '~/components/ Tables/BarbellLoadTable';
-
 import ButtonGroup from '~/components/ui/ButtonGroup';
 import ButtonSelect from '~/components/ui/ButtonSelect';
 import Select from '~/components/ui/Select';
 import TextInput from '~/components/ui/TextInput';
 import { percentages } from '~/constants/misc';
-import { weightUnits } from '~/constants/weights';
+import {
+  defaultKgBarWeight,
+  defaultKgPlates,
+  defaultLbBarWeight,
+  defaultLbPlates,
+  weightUnits,
+} from '~/constants/weights';
 import { BarbellLoadForm } from '~/types/forms';
 import {
   BarbellLoadData,
@@ -18,114 +22,22 @@ import {
 
 import { getBarWeights, getPlates } from '~/utils/getters';
 import { calculateBarbellLoad } from '~/utils/calculators';
-
-// Initial Values
-export const INITIAL_BARBELL_LOAD_FORM: BarbellLoadForm = {
-  weightUnit: 'lb',
-  percentage: 100,
-  barWeight: 45,
-  plates: [45, 35, 25, 10, 5, 2.5],
-  targetWeight: 45,
-};
-
-export const INITIAL_BARBELL_LOAD_LB = [
-  {
-    plate: 45,
-    perSide: 0,
-  },
-  {
-    plate: 35,
-    perSide: 0,
-  },
-  {
-    plate: 25,
-    perSide: 0,
-  },
-  {
-    plate: 10,
-    perSide: 0,
-  },
-  {
-    plate: 5,
-    perSide: 0,
-  },
-  {
-    plate: 2.5,
-    perSide: 0,
-  },
-  {
-    plate: 1.25,
-    perSide: 0,
-  },
-];
-
-export const INITIAL_BARBELL_LOAD_KB = [
-  {
-    plate: 25,
-    perSide: 0,
-  },
-  {
-    plate: 20,
-    perSide: 0,
-  },
-  {
-    plate: 15,
-    perSide: 0,
-  },
-  {
-    plate: 10,
-    perSide: 0,
-  },
-  {
-    plate: 5,
-    perSide: 0,
-  },
-  {
-    plate: 2.5,
-    perSide: 0,
-  },
-  {
-    plate: 1.25,
-    perSide: 0,
-  },
-];
-
-const INITIAL_BARBELL_LOAD_DATA_LB: BarbellLoadData = {
-  targetWeight: 45,
-  barWeight: 45,
-  load: INITIAL_BARBELL_LOAD_LB,
-};
-const INITIAL_BARBELL_LOAD_DATA_KG: BarbellLoadData = {
-  targetWeight: 20,
-  barWeight: 20,
-  load: INITIAL_BARBELL_LOAD_KB,
-};
+import BarbellLoadTable from '~/components/tables/BarbellLoadTable';
+import {
+  INITIAL_BARBELL_LOAD_DATA_KG,
+  INITIAL_BARBELL_LOAD_DATA_LB,
+  INITIAL_BARBELL_LOAD_FORM,
+} from '~/constants/initialValues';
 
 function BarbellLoadCalculator() {
   const [form, setForm] = useState<BarbellLoadForm>(INITIAL_BARBELL_LOAD_FORM);
-
   const [barbellLoadData, setBarbellLoadData] = useState<BarbellLoadData>(
     INITIAL_BARBELL_LOAD_DATA_LB
   );
 
   // Helper Variables
-  const defaultKgBarWeight: BarWeight = 20;
-  const defaultLbBarWeight: BarWeight = 45;
-
-  const defaultKgPlates: Plate[] = [25, 20, 15, 10, 5, 2.5, 1.25];
-  const defaultLbPlates: Plate[] = [45, 35, 25, 10, 5, 2.5];
-
   const plates: Plate[] = getPlates(form.weightUnit);
   const barWeights: BarWeight[] = getBarWeights(form.weightUnit);
-
-  // Helper Functions
-  // const updateBarbellLoad = (plates: Plate[]) =>
-  //   plates.map((plate) => {
-  //     return {
-  //       plate,
-  //       perSide: 0,
-  //     };
-  //   });
 
   // Handlers
   const handleTargetWeightChange = (updatedTargetWeight: string) => {
@@ -157,9 +69,6 @@ function BarbellLoadCalculator() {
 
     setForm(updatedForm);
 
-    // const updatedBarbellLoad: BarbellLoad = updateBarbellLoad(
-    //   updatedForm.plates
-    // );
     setBarbellLoadData(
       currentWeightUnit === 'kg'
         ? INITIAL_BARBELL_LOAD_DATA_LB
