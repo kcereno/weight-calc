@@ -5,14 +5,9 @@ import { links } from '~/constants/links';
 
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(true);
-  const [isKg, setIsKg] = useState(false);
 
   const handleThemeToggleClick = () => {
     setIsDarkMode(!isDarkMode);
-  };
-
-  const handleLbsToggleClick = () => {
-    setIsKg(!isKg);
   };
 
   const handleHamburgerMenuButtonClick = () => {
@@ -54,7 +49,7 @@ function Navbar() {
         className="modal"
       >
         <div className="bg-base-100 w-screen h-screen ">
-          <div className="py-20 px-10">
+          <div className="py-20 px-10 max-w-lg mx-auto">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
@@ -77,13 +72,13 @@ function Navbar() {
                   <h3 className="text-xl font-bold">{section.name}</h3>
                   <div className="flex flex-col gap-2">
                     {section.links.map((link) => (
-                      <Link
-                        to={link.url}
+                      <a
+                        href={link.url}
                         key={link.name}
                         className="ml-4"
                       >
                         {link.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>
@@ -101,17 +96,7 @@ function Navbar() {
                     />
                   </label>
                 </div>
-                <div className="form-control">
-                  <label className="ml-4 cursor-pointer flex items-center justify-between">
-                    <div className="">Pounds / Kilograms</div>
-                    <input
-                      type="checkbox"
-                      className="toggle toggle-sm"
-                      onChange={handleLbsToggleClick}
-                      checked={isKg}
-                    />
-                  </label>
-                </div>
+                <div className="form-control"></div>
               </div>
             </div>
           </div>
