@@ -28,11 +28,11 @@ function Navbar() {
 
   return (
     <>
-      <div className="navbar bg-base-100">
-        <div className="flex-1">
+      <div className="flex justify-between bg-base-100 max-w-lg mx-auto">
+        <div className="flex-1 flex items-center">
           <Link
             to="/"
-            className="btn btn-ghost text-xl"
+            className="font-semibold text-xl"
           >
             Weightlifting Calc
           </Link>

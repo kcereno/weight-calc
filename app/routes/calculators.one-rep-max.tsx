@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import TextInput from '~/components/icons/ui/TextInput';
 import WeightInput from '~/components/icons/ui/WeightInput';
+import Layout from '~/components/Layout';
 import OneRepMaxTable from '~/components/tables/OneRepMaxTable';
 import { WeightUnit } from '~/types/weight';
 
@@ -42,7 +43,7 @@ function OneRepMaxCalculator() {
     parseFloat(formData.repetitions) <= 0;
 
   return (
-    <div className="p-6">
+    <Layout className="p-6">
       <h3 className="text-2xl font-bold">One Rep Max Calculator</h3>
       <p className="text-sm">
         Calculate the maximum weight you can lift for one repetition.
@@ -71,7 +72,7 @@ function OneRepMaxCalculator() {
       </div>
 
       {oneRepMax > 0 ? <OneRepMaxTable data={liftData} /> : null}
-    </div>
+    </Layout>
   );
 }
 

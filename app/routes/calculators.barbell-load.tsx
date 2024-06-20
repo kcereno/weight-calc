@@ -28,6 +28,7 @@ import {
   INITIAL_BARBELL_LOAD_DATA_LB,
   INITIAL_BARBELL_LOAD_FORM,
 } from '~/constants/initialValues';
+import Layout from '~/components/Layout';
 
 function BarbellLoadCalculator() {
   const [form, setForm] = useState<BarbellLoadForm>(INITIAL_BARBELL_LOAD_FORM);
@@ -132,7 +133,7 @@ function BarbellLoadCalculator() {
   const targetWeightIsValid = form.targetWeight >= form.barWeight;
 
   return (
-    <div className="p-6 max-w-md">
+    <Layout className="p-6">
       <h3 className="text-2xl font-bold">Barbell Load Calculator</h3>
       <p className="text-sm">
         Calculate the plates you need to load on your barbell
@@ -197,7 +198,7 @@ function BarbellLoadCalculator() {
           updateBarbellLoadEntry={handleUpdateBarbellLoadEntry}
         />
       </div>
-    </div>
+    </Layout>
   );
 }
 
