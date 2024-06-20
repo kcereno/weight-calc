@@ -29,6 +29,7 @@ import {
   INITIAL_BARBELL_LOAD_FORM,
 } from '~/constants/initialValues';
 import Layout from '~/components/Layout';
+import CalculatorHeader from '~/components/CalculatorHeader';
 
 function BarbellLoadCalculator() {
   const [form, setForm] = useState<BarbellLoadForm>(INITIAL_BARBELL_LOAD_FORM);
@@ -134,10 +135,10 @@ function BarbellLoadCalculator() {
 
   return (
     <Layout className="p-6">
-      <h3 className="text-2xl font-bold">Barbell Load Calculator</h3>
-      <p className="text-sm">
-        Calculate the plates you need to load on your barbell
-      </p>
+      <CalculatorHeader
+        heading="Barbell Load Calculator"
+        description="Calculate the plates you need to load on your barbell"
+      />
       <div className="my-6">
         <div className="flex gap-2">
           <TextInput

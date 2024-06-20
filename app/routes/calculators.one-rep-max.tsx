@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import CalculatorHeader from '~/components/CalculatorHeader';
 
 import TextInput from '~/components/icons/ui/TextInput';
 import WeightInput from '~/components/icons/ui/WeightInput';
@@ -44,10 +45,11 @@ function OneRepMaxCalculator() {
 
   return (
     <Layout className="p-6">
-      <h3 className="text-2xl font-bold">One Rep Max Calculator</h3>
-      <p className="text-sm">
-        Calculate the maximum weight you can lift for one repetition.
-      </p>
+      <CalculatorHeader
+        heading="One Rep Max Calculator"
+        description="Calculate the maximum weight you can lift for one repetition"
+      />
+
       <div className="my-6">
         <WeightInput
           onChange={handleInputChange}
