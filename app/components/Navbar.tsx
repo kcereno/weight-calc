@@ -83,7 +83,7 @@ function Navbar() {
                   </div>
                 </div>
               ))}
-              <div className="">
+              {/* <div className="">
                 <h3 className="font-bold text-xl">Settings</h3>
                 <div className="form-control mb-2">
                   <label className="ml-4 cursor-pointer flex items-center justify-between">
@@ -97,7 +97,7 @@ function Navbar() {
                   </label>
                 </div>
                 <div className="form-control"></div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
