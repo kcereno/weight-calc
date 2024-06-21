@@ -1,10 +1,24 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from './icons/HamburgerIcon';
-import { navLinks } from '~/constants/links';
 
 // import { useState } from 'react';
 
 function Navbar() {
+  const navLinks = [
+    {
+      name: 'Calculators',
+      links: [
+        {
+          name: 'One Rep Max',
+          url: '/calculators/one-rep-max',
+        },
+        {
+          name: 'Barbell Load ',
+          url: '/calculators/barbell-load',
+        },
+      ],
+    },
+  ];
   // const [isDarkMode, setIsDarkMode] = useState(true);
 
   // const handleThemeToggleClick = () => {
