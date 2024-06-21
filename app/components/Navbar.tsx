@@ -1,14 +1,14 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from './icons/HamburgerIcon';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { links } from '~/constants/links';
 
 function Navbar() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  // const [isDarkMode, setIsDarkMode] = useState(true);
 
-  const handleThemeToggleClick = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  // const handleThemeToggleClick = () => {
+  //   setIsDarkMode(!isDarkMode);
+  // };
 
   const handleHamburgerMenuButtonClick = () => {
     const modal = document.getElementById(
