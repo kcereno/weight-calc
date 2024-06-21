@@ -49,7 +49,7 @@ function Navbar() {
         className="modal"
       >
         <div className="bg-base-100 w-screen h-screen ">
-          <div className="py-20 px-10 max-w-lg mx-auto">
+          <div className="py-20 px-10 max-w-sm mx-auto">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
