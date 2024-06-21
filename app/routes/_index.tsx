@@ -1,5 +1,6 @@
 import type { MetaFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
+import { navLinks } from '~/constants/links';
 
 export const meta: MetaFunction = () => {
   return [
@@ -8,52 +9,11 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const links = [
-  {
-    name: 'Calculators',
-    links: [
-      {
-        name: 'One Rep Max',
-        url: '/calculators/one-rep-max',
-      },
-      // {
-      //   name: 'Powerlifting Level',
-      //   url: '/',
-      // },
-      {
-        name: 'Barbell Load ',
-        url: '/calculators/barbell-load',
-      },
-      // {
-      //   name: 'Macro',
-      //   url: '/',
-      // },
-      // {
-      //   name: 'RPE',
-      //   url: '/',
-      // },
-    ],
-  },
-  // {
-  //   name: 'Docs',
-  //   links: [
-  //     {
-  //       name: 'Powerlifting Standards',
-  //       url: '/',
-  //     },
-  //     {
-  //       name: 'Prelipins Table',
-  //       url: '/',
-  //     },
-  //   ],
-  // },
-];
-
 export default function Index() {
   return (
     <main className="p-6 space-y-4 bg-base-200 min-h-screen">
       <div className="max-w-lg mx-auto">
-        {links.map((section) => (
+        {navLinks.map((section) => (
           <div key={section.name}>
             <h3 className="text-2xl font-bold">{section.name}</h3>
             <div className="flex flex-col">

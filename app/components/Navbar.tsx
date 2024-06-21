@@ -1,7 +1,8 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from './icons/HamburgerIcon';
+import { navLinks } from '~/constants/links';
+
 // import { useState } from 'react';
-import { links } from '~/constants/links';
 
 function Navbar() {
   // const [isDarkMode, setIsDarkMode] = useState(true);
@@ -64,7 +65,7 @@ function Navbar() {
                 Home
               </Link>
               {/* Sections */}
-              {links.map((section) => (
+              {navLinks.map((section) => (
                 <div
                   key={section.name}
                   className=""
