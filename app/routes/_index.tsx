@@ -1,13 +1,53 @@
 import type { MetaFunction } from '@remix-run/node';
 import { Link } from '@remix-run/react';
-import { links } from '~/constants/links';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' },
+    { title: 'Weighlifting Calc' },
     { name: 'description', content: 'Welcome to Remix!' },
   ];
 };
+
+export const links = [
+  {
+    name: 'Calculators',
+    links: [
+      {
+        name: 'One Rep Max',
+        url: '/calculators/one-rep-max',
+      },
+      // {
+      //   name: 'Powerlifting Level',
+      //   url: '/',
+      // },
+      {
+        name: 'Barbell Load ',
+        url: '/calculators/barbell-load',
+      },
+      // {
+      //   name: 'Macro',
+      //   url: '/',
+      // },
+      // {
+      //   name: 'RPE',
+      //   url: '/',
+      // },
+    ],
+  },
+  // {
+  //   name: 'Docs',
+  //   links: [
+  //     {
+  //       name: 'Powerlifting Standards',
+  //       url: '/',
+  //     },
+  //     {
+  //       name: 'Prelipins Table',
+  //       url: '/',
+  //     },
+  //   ],
+  // },
+];
 
 export default function Index() {
   return (
