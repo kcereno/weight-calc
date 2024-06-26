@@ -38,7 +38,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="flex justify-between bg-base-100 max-w-lg mx-auto">
+      <div className="flex justify-between bg-base-100 max-w-lg mx-auto navbar">
         <div className="flex-1 flex items-center">
           <Link
             to="/"
