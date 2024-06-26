@@ -8,7 +8,7 @@ import {
 import type { LinksFunction } from '@remix-run/node';
 
 import stylesheet from '~/tailwind.css?url';
-import Navbar from './components/Navbar';
+import Navbar from './components/organisms/navigation/Navbar';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },

@@ -13,7 +13,6 @@ function BarbellLoadTable({
   // Helpers
   const plateWeight = load ? calculateTotalPlateWeight(load) : 0;
   const totalWeight = plateWeight ? +plateWeight + +barWeight : barWeight;
-  console.log('totalWeight:', totalWeight);
 
   // Handlers
   const handleAddButtonClick = ({ plate, perSide }: BarBellLoadEntry) => {

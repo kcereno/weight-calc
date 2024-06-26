@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import CalculatorHeader from '~/components/CalculatorHeader';
-import Card from '~/components/Card';
-import Layout from '~/components/Layout';
-import Select from '~/components/ui/Select';
-import TextInput from '~/components/ui/TextInput';
+import Card from '~/components/atoms/Card';
+import SelectInputField from '~/components/molecules/inputs/SelectInputField';
+import TextInputField from '~/components/molecules/inputs/TextInputField';
+import CalculatorTemplate from '~/components/templates/CalculatorTemplate';
+
 import { WarmUpInputForm } from '~/types/forms';
 import { WarmUpSet, WarmupSetOption, WorkingSetRepRange } from '~/types/sets';
 import { calculateWarmUpSets } from '~/utils/calculators';
@@ -53,13 +53,12 @@ function WarmUpCalculator() {
   };
 
   return (
-    <Layout>
-      <CalculatorHeader
-        heading="Warmup Calculator"
-        description="Generate personalized warm-up sets based on your training goal, exercise type, working weight, and reps to optimize your workout preparation"
-      />
+    <CalculatorTemplate
+      heading="Warmup Calculator"
+      description="Generate personalized warm-up sets based on your training goal, exercise type, working weight, and reps to optimize your workout preparation"
+    >
       <div className="my-6 space-y-4">
-        <TextInput
+        <TextInputField
           name="Working Set Weight"
           value={warmupInputForm.workingSetWeight.toLocaleString()}
           onChange={handleWorkingSetWeightChange}
@@ -67,18 +66,20 @@ function WarmUpCalculator() {
           errorMessage="Must be greater than 0"
           type="number"
         />
-        <Select
+        <SelectInputField
           name="Working Set Reps"
           options={workingSetRepRanges}
           value={warmupInputForm.workingSetRepRange}
           onChange={handleWorkingSetRepRangeChange}
+          defaultValue="1-5 (Strength)"
         />
 
-        <Select
+        <SelectInputField
           name="Warmup Sets"
           options={warmupSetOptions}
           value={warmupInputForm.warmupSetOption}
           onChange={handleWarmupSetChange}
+          defaultValue="4 (Ideal for All Training"
         />
       </div>
       <button
@@ -116,7 +117,7 @@ function WarmUpCalculator() {
           </table>
         </Card>
       )}
-    </Layout>
+    </CalculatorTemplate>
   );
 }
 

@@ -14,7 +14,7 @@ function Card({ children, className = '' }: CardProps) {
         className
       )}
     >
-      <div className="p-4 ">{children}</div>
+      {children}
     </div>
   );
 }

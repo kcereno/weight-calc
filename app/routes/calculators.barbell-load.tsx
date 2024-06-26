@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import ButtonGroup from '~/components/ui/ButtonGroup';
-import ButtonSelect from '~/components/ui/ButtonSelect';
-import Select from '~/components/ui/Select';
-import TextInput from '~/components/ui/TextInput';
+
 import { percentages } from '~/constants/misc';
 import {
   defaultKgBarWeight,
@@ -22,14 +19,18 @@ import {
 
 import { getBarWeights, getPlates } from '~/utils/getters';
 import { calculateBarbellLoad } from '~/utils/calculators';
-import BarbellLoadTable from '~/components/tables/BarbellLoadTable';
+import BarbellLoadTable from '~/components/organisms/tables/BarbellLoadTable';
 import {
   INITIAL_BARBELL_LOAD_DATA_KG,
   INITIAL_BARBELL_LOAD_DATA_LB,
   INITIAL_BARBELL_LOAD_FORM,
 } from '~/constants/initialValues';
-import Layout from '~/components/Layout';
-import CalculatorHeader from '~/components/CalculatorHeader';
+
+import SelectInputField from '~/components/molecules/inputs/SelectInputField';
+import TextInputField from '~/components/molecules/inputs/TextInputField';
+import CalculatorTemplate from '~/components/templates/CalculatorTemplate';
+import ButtonSelectField from '~/components/molecules/inputs/ButtonSelectField';
+import ButtonGroupInputField from '~/components/molecules/inputs/ButtonGroupInputField';
 
 function BarbellLoadCalculator() {
   const [form, setForm] = useState<BarbellLoadForm>(INITIAL_BARBELL_LOAD_FORM);
@@ -88,6 +89,7 @@ function BarbellLoadCalculator() {
   };
 
   const handlePlateChange = (updatedPlates: Plate[]) => {
+    console.log('handlePlateChange ~ updatedPlates:', updatedPlates);
     const updateForm: BarbellLoadForm = {
       ...form,
       plates: updatedPlates,
@@ -134,14 +136,13 @@ function BarbellLoadCalculator() {
   const targetWeightIsValid = form.targetWeight >= form.barWeight;
 
   return (
-    <Layout>
-      <CalculatorHeader
-        heading="Barbell Load Calculator"
-        description="Calculate the plates you need to load on your barbell"
-      />
+    <CalculatorTemplate
+      heading="Barbell Load Calculator"
+      description="Calculate the plates you need to load on your barbell"
+    >
       <div className="my-6">
         <div className="flex gap-2">
-          <TextInput
+          <TextInputField
             className="flex-1"
             name="Target Weight"
             value={form.targetWeight.toLocaleString()}
@@ -150,23 +151,24 @@ function BarbellLoadCalculator() {
             errorMessage="Target weight must be greater than or equal to bar weight"
             type="number"
           />
-          <Select
+          <SelectInputField
             className="flex-1"
             value={form.percentage}
             name="Percentage"
             options={percentages}
             onChange={handlePercentageChange}
+            defaultValue={100}
           />
         </div>
         <div className="flex gap-6">
-          <ButtonSelect
+          <ButtonSelectField
             name="Weight Unit"
             value={form.weightUnit}
             options={weightUnits}
             onChange={handleWeightUnitChange}
           />
 
-          <ButtonSelect
+          <ButtonSelectField
             name="Bar Weight"
             value={form.barWeight}
             options={barWeights}
@@ -174,7 +176,7 @@ function BarbellLoadCalculator() {
           />
         </div>
 
-        <ButtonGroup
+        <ButtonGroupInputField
           name="Plates"
           values={form.plates}
           options={plates}
@@ -199,7 +201,7 @@ function BarbellLoadCalculator() {
           updateBarbellLoadEntry={handleUpdateBarbellLoadEntry}
         />
       </div>
-    </Layout>
+    </CalculatorTemplate>
   );
 }
 

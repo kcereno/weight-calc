@@ -1,7 +1,7 @@
 import { OneRepMaxTableEntry } from '~/types/data';
 import { WarmUpInputForm } from '~/types/forms';
 import { WarmUpSet } from '~/types/sets';
-import { Plate, BarWeight, BarbellLoad, WeightUnit } from '~/types/weight';
+import { Plate, BarWeight, BarbellLoad } from '~/types/weight';
 
 export function calculateOneRepMax(weight: number, reps: number): number {
   if (reps === 1) {
@@ -14,9 +14,8 @@ function calculateLiftWeight(oneRepMax: number, percentage: number): number {
   return Math.round(((oneRepMax * percentage) / 100) * 10) / 10;
 }
 
-export function generateLiftData(
-  oneRepMax: number,
-  weightType: WeightUnit
+export function calculateOneRepMaxTableData(
+  oneRepMax: number
 ): OneRepMaxTableEntry[] {
   const percentageToRepsRangeTable: { [key: number]: string } = {
     100: '1',
@@ -38,7 +37,7 @@ export function generateLiftData(
     const range = percentageToRepsRangeTable[percent];
     data.push({
       '% of 1RM': `${percent}%`,
-      Weight: `${liftWeight} ${weightType}`,
+      Weight: `${liftWeight}`,
       'Reps of 1RM': range,
     });
   }

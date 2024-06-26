@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import HamburgerIcon from './icons/HamburgerIcon';
+import HamburgerIcon from '../../atoms/icons/HamburgerIcon';
 
 // import { useState } from 'react';
 
