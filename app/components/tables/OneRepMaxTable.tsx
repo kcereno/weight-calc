@@ -1,8 +1,8 @@
-import { oneRepMaxTableDataEntry } from '~/types/data';
+import { OneRepMaxTableEntry } from '~/types/data';
 import Table from '../icons/ui/Table';
 
 type OneRepMaxTableProps = {
-  data: oneRepMaxTableDataEntry[];
+  data: OneRepMaxTableEntry[];
 };
 
 function OneRepMaxTable({ data }: OneRepMaxTableProps) {

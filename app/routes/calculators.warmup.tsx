@@ -4,103 +4,9 @@ import Card from '~/components/Card';
 import Layout from '~/components/Layout';
 import Select from '~/components/ui/Select';
 import TextInput from '~/components/ui/TextInput';
-
-type WorkingSetRepRange =
-  | '1-5 (Strength)'
-  | '6-12 (Hypertrophy)'
-  | '12+ (Endurance)';
-
-type WarmupSetOption =
-  | '3 (Ideal for Hypertrophy and Endurance Training)'
-  | '4 (Ideal for All Training'
-  | '5 (Ideal for Strength Training)';
-
-type WarmUpInputForm = {
-  warmupSetOption: WarmupSetOption;
-  workingSetWeight: number;
-  workingSetRepRange: WorkingSetRepRange;
-};
-
-interface WarmUpSet {
-  weight: number | 'BAR';
-  reps: string | number;
-  percentage?: number; // Include percentage of the working set weight
-}
-
-function calculateWarmUpSets(input: WarmUpInputForm): WarmUpSet[] {
-  const warmUpSets: WarmUpSet[] = [];
-
-  // Add the bar only set
-  warmUpSets.push({
-    weight: 'BAR',
-    reps:
-      input.workingSetRepRange === '1-5 (Strength)'
-        ? '5-10'
-        : input.workingSetRepRange === '6-12 (Hypertrophy)'
-        ? '8-10'
-        : '10-12',
-    percentage: 0, // Bar only set doesn't have a percentage of working set weight
-  });
-
-  if (input.workingSetRepRange === '1-5 (Strength)') {
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.4 * 10) / 10,
-      reps: 5,
-      percentage: 40,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.6 * 10) / 10,
-      reps: 4,
-      percentage: 60,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.75 * 10) / 10,
-      reps: 3,
-      percentage: 75,
-    });
-    if (input.warmupSetOption === '5 (Ideal for Strength Training)') {
-      warmUpSets.push({
-        weight: Math.round(input.workingSetWeight * 0.85 * 10) / 10,
-        reps: 2,
-        percentage: 85,
-      });
-    }
-  } else if (input.workingSetRepRange === '6-12 (Hypertrophy)') {
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.5 * 10) / 10,
-      reps: 8,
-      percentage: 50,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.65 * 10) / 10,
-      reps: 6,
-      percentage: 65,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.8 * 10) / 10,
-      reps: 4,
-      percentage: 80,
-    });
-  } else if (input.workingSetRepRange === '12+ (Endurance)') {
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.5 * 10) / 10,
-      reps: 10,
-      percentage: 50,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.6 * 10) / 10,
-      reps: 8,
-      percentage: 60,
-    });
-    warmUpSets.push({
-      weight: Math.round(input.workingSetWeight * 0.7 * 10) / 10,
-      reps: 6,
-      percentage: 70,
-    });
-  }
-
-  return warmUpSets;
-}
+import { WarmUpInputForm } from '~/types/forms';
+import { WarmUpSet, WarmupSetOption, WorkingSetRepRange } from '~/types/sets';
+import { calculateWarmUpSets } from '~/utils/calculators';
 
 function WarmUpCalculator() {
   const [warmupInputForm, setWarmupInputForm] = useState<WarmUpInputForm>({
@@ -109,7 +15,6 @@ function WarmUpCalculator() {
     workingSetWeight: 225,
   });
   const [warmupSets, setWarmupSets] = useState<WarmUpSet[] | null>(null);
-  console.log('WarmUpCalculator ~ warmupSets:', warmupSets);
 
   const workingSetRepRanges: WorkingSetRepRange[] = [
     '1-5 (Strength)',
@@ -127,7 +32,6 @@ function WarmUpCalculator() {
   const formIsValid = warmupInputForm.workingSetWeight > 0;
 
   // Handlers
-
   const handleWorkingSetWeightChange = (value: string) => {
     setWarmupInputForm({
       ...warmupInputForm,
@@ -148,7 +52,6 @@ function WarmUpCalculator() {
     setWarmupSets(warmupSets);
   };
 
-  // console.log('WarmUpCalculator ~ warmupInputForm:', warmupInputForm);
   return (
     <Layout>
       <CalculatorHeader
