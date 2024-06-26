@@ -134,7 +134,7 @@ function BarbellLoadCalculator() {
   const targetWeightIsValid = form.targetWeight >= form.barWeight;
 
   return (
-    <Layout className="p-6">
+    <Layout>
       <CalculatorHeader
         heading="Barbell Load Calculator"
         description="Calculate the plates you need to load on your barbell"

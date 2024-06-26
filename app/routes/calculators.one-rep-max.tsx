@@ -44,7 +44,7 @@ function OneRepMaxCalculator() {
     parseFloat(formData.repetitions) <= 0;
 
   return (
-    <Layout className="p-6">
+    <Layout>
       <CalculatorHeader
         heading="One Rep Max Calculator"
         description="Calculate the maximum weight you can lift for one repetition"

@@ -150,7 +150,7 @@ function WarmUpCalculator() {
 
   // console.log('WarmUpCalculator ~ warmupInputForm:', warmupInputForm);
   return (
-    <Layout className="p-6">
+    <Layout>
       <CalculatorHeader
         heading="Warmup Calculator"
         description="Generate personalized warm-up sets based on your training goal, exercise type, working weight, and reps to optimize your workout preparation"
@@ -188,13 +188,13 @@ function WarmUpCalculator() {
 
       {warmupSets && (
         <Card className="my-10">
-          <table className="table text-center">
+          <table className="table text-center table-xs">
             <thead>
               <tr>
                 <th>Set</th>
                 <th>Weight</th>
                 <th>Reps</th>
-                <th>% of Working Weight</th>
+                <th>% of WW</th>
               </tr>
             </thead>
             <tbody>
