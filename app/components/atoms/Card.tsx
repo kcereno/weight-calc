@@ -10,7 +10,7 @@ function Card({ children, className = '' }: CardProps) {
   return (
     <div
       className={twMerge(
-        'card bg-neutral text-neutral-content w-full',
+        'card bg-neutral text-neutral-content w-full p-2',
         className
       )}
     >
