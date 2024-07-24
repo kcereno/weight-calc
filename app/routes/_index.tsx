@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <main className="p-6 space-y-4 bg-base-200">
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-lg min-h-screen mx-auto">
         {navLinks.map((section) => (
           <div key={section.name}>
             <h3 className="text-2xl font-bold">{section.name}</h3>
