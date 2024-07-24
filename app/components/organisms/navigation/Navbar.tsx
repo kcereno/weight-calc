@@ -1,24 +1,25 @@
 import { Link } from '@remix-run/react';
 import HamburgerIcon from '../../atoms/icons/HamburgerIcon';
+import { navLinks } from '~/constants/navLinks';
 
 // import { useState } from 'react';
 
 function Navbar() {
-  const navLinks = [
-    {
-      name: 'Calculators',
-      links: [
-        {
-          name: 'One Rep Max',
-          url: '/calculators/one-rep-max',
-        },
-        {
-          name: 'Barbell Load ',
-          url: '/calculators/barbell-load',
-        },
-      ],
-    },
-  ];
+  // const navLinks = [
+  //   {
+  //     name: 'Calculators',
+  //     links: [
+  //       {
+  //         name: 'One Rep Max',
+  //         url: '/calculators/one-rep-max',
+  //       },
+  //       {
+  //         name: 'Barbell Load ',
+  //         url: '/calculators/barbell-load',
+  //       },
+  //     ],
+  //   },
+  // ];
   // const [isDarkMode, setIsDarkMode] = useState(true);
 
   // const handleThemeToggleClick = () => {
@@ -38,11 +39,11 @@ function Navbar() {
 
   return (
     <>
-      <div className="flex justify-between bg-base-100 max-w-lg mx-auto navbar">
-        <div className="flex-1 flex items-center">
+      <div className="flex justify-between max-w-lg mx-auto bg-base-100 navbar">
+        <div className="flex items-center flex-1">
           <Link
             to="/"
-            className="font-semibold text-xl"
+            className="text-xl font-semibold"
           >
             Weightlifting Calc
           </Link>
@@ -63,11 +64,11 @@ function Navbar() {
         id="hamburger_menu-modal"
         className="modal"
       >
-        <div className="bg-base-100 w-screen h-screen ">
-          <div className="py-20 px-10 max-w-sm mx-auto">
+        <div className="w-screen h-screen bg-base-100 ">
+          <div className="max-w-sm px-10 py-20 mx-auto">
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              <button className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2">
                 ✕
               </button>
             </form>
@@ -99,9 +100,9 @@ function Navbar() {
                 </div>
               ))}
               {/* <div className="">
-                <h3 className="font-bold text-xl">Settings</h3>
-                <div className="form-control mb-2">
-                  <label className="ml-4 cursor-pointer flex items-center justify-between">
+                <h3 className="text-xl font-bold">Settings</h3>
+                <div className="mb-2 form-control">
+                  <label className="flex items-center justify-between ml-4 cursor-pointer">
                     <div className="">Light/Dark</div>
                     <input
                       type="checkbox"
