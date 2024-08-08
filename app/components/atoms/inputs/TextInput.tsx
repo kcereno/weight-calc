@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 export type TextInputProps = {
   value: string | number | undefined;
@@ -13,9 +13,16 @@ function TextInput({
   isValid = true,
 }: TextInputProps) {
   const [isTouched, setIsTouched] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleTextInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     onChange(newValue);
+  };
+
+  const handleFocus = () => {
+    setIsTouched(true);
+    inputRef.current?.select();
   };
 
   return (
@@ -26,9 +33,8 @@ function TextInput({
       }`}
       value={(value as string) || ''}
       onChange={handleTextInputChange}
-      onFocus={() => {
-        setIsTouched(true);
-      }}
+      ref={inputRef}
+      onFocus={handleFocus}
       min={0}
     />
   );
